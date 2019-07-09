@@ -38,15 +38,35 @@
 
 * 正则化、批处理的minist简单网络
 
-  像素值从0~255正则化到0.0~1.0；以0为中心分布；数据白化；批处理可以高速运算；get_data、init_network、predict、accuracy
+  像素值从0-255正则化到0.0-1.0；以0为中心分布；数据白化；批处理可以高速运算；get_data、init_network、predict、accuracy
 
 #### 第四章   神经网络的学习
 
 * 均分误差及其mini batch实现
+
 * one-hot标签
+
+  y[np.arange(batch_size), t]
+
 * cross-entropy error及其mini batch实现
+
+  维度为1时，扩展维度
+
 * 为什么使用损失函数而不用精度，类似激活函数不选择阶跃函数
+
+  参数变化，精度可能不变或者不连续，梯度为0
+
+* 数值微分实现及作用
+
+  梯度校验
+
 * 梯度下降的代码实现
+
+  微分实现、学习率、迭代步数、更新参数
+
+* mini batch的两层网络训练
+
+  mini batch读取数据、predict、loss、accuracy、numerical_gradient、梯度更新、loss绘图
 
 #### 第五章   误差方向传播法
 
