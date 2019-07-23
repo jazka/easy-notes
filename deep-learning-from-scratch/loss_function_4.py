@@ -21,9 +21,9 @@ def cross_entroy_error_batch(y, t, one_hot=False):
 
     batch_size = y.shape[0]
     if one_hot:
-        return -np.sum(np.log(y[np.arange(batch_size), t] + 1e-7)) / batch_size
-    else:
         return -np.sum(t * np.log(y + 1e-7)) / batch_size
+    else:
+        return -np.sum(np.log(y[np.arange(batch_size), t] + 1e-7)) / batch_size
 
 def main():
     y = np.array([0.1, 0.05, 0.6, 0.0, 0.05, 0.1, 0.0, 0.1, 0.0, 0.0])
