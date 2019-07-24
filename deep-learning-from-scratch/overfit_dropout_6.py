@@ -13,7 +13,7 @@ from common.multi_layer_net_extend import MultiLayerNetExtend
 from common.optimizer import SGD
 
 def main():
-    (x_train, t_train), (x_test, t_test) = load_mnist(normalize=True)
+    (x_train, t_train), (x_test, t_test) = load_mnist(normalize=True, one_hot_label=True)
     x_train = x_train[:300]
     t_train = t_train[:300]
 

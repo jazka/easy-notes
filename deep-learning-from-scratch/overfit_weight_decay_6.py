@@ -13,7 +13,7 @@ from common.multi_layer_net import MultiLayerNet
 from common.optimizer import SGD
 
 def main():
-    (x_train, t_train), (x_test, t_test) = load_mnist(normalize=True)
+    (x_train, t_train), (x_test, t_test) = load_mnist(normalize=True, one_hot_label=True)
     x_train = x_train[:300]
     t_train = t_train[:300]
 
@@ -21,8 +21,8 @@ def main():
     train_size = x_train.shape[0]
     batch_size = 100
     learning_rate = 0.01
-    weight_decay_lambda = 0
-    # weight_decay_lambda = 0.1
+    # weight_decay_lambda = 0
+    weight_decay_lambda = 0.1
 
     train_acc_list = []
     test_acc_list = []

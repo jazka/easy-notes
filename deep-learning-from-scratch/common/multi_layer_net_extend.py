@@ -60,10 +60,10 @@ class MultiLayerNetExtend:
 
             self.params['W' + str(idx)] = \
                     scale * np.random.randn(all_size_list[idx - 1], all_size_list[idx])
-            self.params['b' + str(idx)] = np.zeros_like(all_size_list[idx])
+            self.params['b' + str(idx)] = np.zeros(all_size_list[idx])
 
     def predict(self, x, train_flag=False):
-        for key, layer in self.layers.items:
+        for key, layer in self.layers.items():
             if 'Dropout' in key or 'BatchNorm' in key:
                 x = layer.forward(x, train_flag)
             else:
@@ -79,7 +79,7 @@ class MultiLayerNetExtend:
             W = self.params['W' + str(idx)]
             weight_decay += 0.5 * self.weight_decay_lambda * np.sum(W**2)
 
-        return self.last_layer.forward(x, t) + weight_decay
+        return self.last_layer.forward(y, t) + weight_decay
 
     def accuracy(self, X, T):
         Y = self.predict(X, train_flag=False)
@@ -109,7 +109,7 @@ class MultiLayerNetExtend:
         dout = 1
         dout = self.last_layer.backward(dout)
 
-        layers = list(self.layers.values)
+        layers = list(self.layers.values())
         layers.reverse()
         for layer in layers:
             dout = layer.backward(dout)

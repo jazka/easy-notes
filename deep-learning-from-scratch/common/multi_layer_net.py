@@ -68,6 +68,16 @@ class MultiLayerNet:
 
         return self.last_layer.forward(y, t) + weight_decay
 
+    def accuracy(self, x, t):
+        y = self.predict(x)
+        y = np.argmax(y, axis=1)
+
+        if t.ndim != 1:
+            t = np.argmax(t, axis=1)
+
+        accuracy = np.sum(y == t) / float(x.shape[0])
+        return accuracy
+
     def numerical_gradient(self, x, t):
         loss_W = lambda W: self.loss(x, t)
 
