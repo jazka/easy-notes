@@ -11,7 +11,7 @@ sys.path.append(os.pardir)
 import numpy as np
 from collections import OrderedDict
 
-from common.layer import *
+from common.layers import *
 from common.gradient import numerical_gradient
 
 class MultiLayerNet:
@@ -50,7 +50,7 @@ class MultiLayerNet:
 
             self.params['W' + str(idx)] = \
                     scale * np.random.randn(all_size_list[idx - 1], all_size_list[idx])
-            self.params['b' + str(idx)] = np.zeros_like(all_size_list[idx])
+            self.params['b' + str(idx)] = np.zeros(all_size_list[idx])
 
     def predict(self, x):
         for layer in self.layers.values():
@@ -66,7 +66,7 @@ class MultiLayerNet:
             W = self.params['W' + str(idx)]
             weight_decay += 0.5 * self.weight_decay_lambda * np.sum(W**2)
 
-        return self.last_layer.forward(x, t) + weight_decay
+        return self.last_layer.forward(y, t) + weight_decay
 
     def numerical_gradient(self, x, t):
         loss_W = lambda W: self.loss(x, t)
@@ -84,7 +84,7 @@ class MultiLayerNet:
         dout = 1
         dout = self.last_layer.backward(dout)
 
-        layers = list(self.layers.values)
+        layers = list(self.layers.values())
         layers.reverse()
         for layer in layers:
             dout = layer.backward(dout)

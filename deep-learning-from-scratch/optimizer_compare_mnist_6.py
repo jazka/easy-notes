@@ -14,7 +14,7 @@ from common.optimizer import *
 from common.util import smooth_curve
 
 def main():
-    (x_train, t_train), (x_test, t_test) = load_mnist(normalize=True)
+    (x_train, t_train), (x_test, t_test) = load_mnist(normalize=True, one_hot_label=True)
     train_size = x_train.shape[0]
     batch_size = 128
     max_iterations = 2000
