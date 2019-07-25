@@ -249,11 +249,47 @@
 #### 第八章   深度学习
 
 * 数据增强的方法
+
+  旋转、垂直水平方向微小移动、crop、flip、亮度、放大缩小
+
 * minist最好成绩网络不是很深，简单任务
+
 * 加深网络层的必要性
-* alexnet vgg googlenet resnet各自特点
+
+  减少网络参数、扩大感受野、增加ReLU等激活函数的非线性表现力、分层传递信息、学习更加高效
+
+* AlexNet、VGG、GoogleNet、ResNet各自特点
+
+  AlexNet：2012年，ReLU、Pooling、LRN、Dropout、GPU普及
+
+  VGG：2014年，有权重的层(Conv和Affine层)叠加到16或者19层、3*3小滤波器、简单且应用性强
+
+  GoogleNet：2014年，不仅纵向有深度，横向也有宽度，Inception结构使用多个大小不同的滤波器
+
+  ResNet：2015年，快捷结构横跨输入数据卷积层，将输入x合计到输出，F(x) = F(x) + x，反向传播信号无衰减传递
+
 * 神经网络各层占用时间
-* R-CNN Selective Search，Fast RCNN，FCN，NIC（CNN+RNN），RNN，多模态处理
+
+  AlexNet中Conv层计算占GPU 95%，分布式学习、运算精度从64和32减为16
+
+* R-CNN Selective Search，Faster RCNN，FCN，NIC（CNN+RNN），RNN，多模态处理
+
+  RCNN使用Selective Search进行候选区域提取
+
+  Faster RCNN使用CNN进行候选区域提取
+
+  FCN(Fully Convolutional Network)用于语义分割，通过一次forward处理，对所有像素进行分类，全部Conv层，无Affine层，在最后的层基于双线性插值法扩大空间大小，即通过去卷积/逆卷积来实现
+
+  NIC(Neural Image Caption)用于图像标题生成，CNN提取图像特征，RNN以特征为初始值递归生成文本
+
+  多模态处理：组合图像和自然语言等多种信息进行的处理
+
 * 图像生成GAN，DCGAN
+
+  GAN(Generative Adversarial Network)：Generator和Discriminator两个网络竞争学习，无监督学习
+
 * 无人驾驶SegNet
+
 * 强化学习DQN
+
+  代理（Agent）根据环境选择行动，然后通过这个行动改变环境。根据环境的变化，代理获得某种报酬。强化学习的目的是决定代理的行动方针，以获得更好的报酬
