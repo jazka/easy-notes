@@ -195,14 +195,56 @@
 #### 第七章   卷积神经网络
 
 * CNN常见结构
-* 全链接层的问题及卷积层加入
+
+  从Affine-ReLU结构变成了Convolution-ReLU-Pooling结果，一般CNN最后几层依然使用Affine-ReLU结果
+
+* 全连接层的问题及卷积层加入
+
+  全连接层将图像3维拉平成1维，忽略了图像的高、长、通道的3维形状
+
+  CNN中，卷积层的输入输出称为特征图feature map
+
 * 卷积运算、padding、stride概念及计算
+
+  滤波器运算、padding调整输出大小、stride是滤波器使用的位置间隔
+
+  OH = (H + 2P - FH) / S + 1，OW = (W + 2P - FW) / S + 1
+
 * 多维卷积运算的处理流图
+
+  滤波器的通道数只能设定为和输入数据的通道数相同的值
+
+  (N, C, H, W) $\bigotimes$ (FN, C, FH, FW) $\rightarrow$ (N, FN, OH, OW) + (FN , 1, 1) $\rightarrow$ (N, FN, OH, OW)
+
+  画出图像方块表示
+
 * 池化max average，池化层特征
+
+  Max池化，Average池化，无参数训练，通道数不变，对微小变化有鲁棒性
+
+  OH = (H - PH) / S + 1，OW = (W - PW) / S + 1
+
 * 卷积层和池化层的实现
+
+  im2col将图像输入数据展开以适合滤波器，(N\*out_h\*out_w, -1)
+
+  卷积层im2col、W.reshape(FN, -1).T 、np.dot
+
+  池化层np.max(col, axis=1)
+
 * CNN实现
+
+  Conv-ReLU-Pooling-Affine-ReLU-Affine-Softmax
+
 * CNN的可视化
+
+  每一层的权重映射到0~255的图像值，第1层提取边缘和斑块，接下来纹理，后面更复杂的物体部件
+
 * 各种CNN的发展变化
+
+  LeNet：1998年，sigmoid、subsampling降采样
+
+  AlexNet：2012年，ReLU、Pooling、LRN、Dropout、GPU普及
 
 #### 第八章   深度学习
 
